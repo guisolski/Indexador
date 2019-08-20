@@ -63,7 +63,7 @@ public class InterfaceGrafica {
     
         JLabel nomes[] = new JLabel[3]; 
         nomes[0] = new JLabel("Desenvolvedores: ");
-        nomes[1] = new JLabel("AndrÈ de Macedo ");  
+        nomes[1] = new JLabel("Andr√© de Macedo ");  
         nomes[2] = new JLabel("Guilherme Solski "); 
     
         nomes[0].setBounds(10,390, 120,30);
@@ -185,7 +185,7 @@ public class InterfaceGrafica {
     		else if(Util.insereArqTexto(path,text)) 
     		JOptionPane.showMessageDialog(null, "Documento adicionado com sucesso ao caminho " + path,"Adicionar", JOptionPane.INFORMATION_MESSAGE);
     		else
-    			JOptionPane.showMessageDialog(null, "Documento j· existe","Adicionar", JOptionPane.INFORMATION_MESSAGE);
+    			JOptionPane.showMessageDialog(null, "Documento j√° existe","Adicionar", JOptionPane.INFORMATION_MESSAGE);
     	}catch (Exception e) {
     		JOptionPane.showMessageDialog(null, "Error.","Adicionar", JOptionPane.INFORMATION_MESSAGE);
     	}
@@ -198,7 +198,7 @@ public class InterfaceGrafica {
         dialog.setLayout(null);
         JButton sair = new JButton( "Sair" );
         JButton abrir = new JButton( "Abrir arquivo" );
-        JButton anvacar = new JButton( "AvanÁar Pagina" );
+        JButton anvacar = new JButton( "Avan√ßar Pagina" );
         JButton voltar = new JButton( "Voltar Pagina" );
         ArrayList<JComboBox<String>> combos = new ArrayList<>();
         index = 0;
@@ -207,7 +207,10 @@ public class InterfaceGrafica {
 
 		ArrayList<String> words = Separador.fazerDicionarioString(Separador.separar(pesquisa));
 		String[] stopwords = Separador.separar(new Documento("", STOPWORDS_FILE).read());
-		
+		Diretorio d = new Diretorio(FILES_PATH);
+		dirs = new ArrayList<Diretorio>();
+		dirs.add(d);
+		dirs.addAll(d.getSubdirs());
 		for(int i = 0; i < dirs.size(); i++) {
 			for (int j = 0; j < dirs.get(i).getSizeFiles(); j++)
 				listWordsFile.add(dirs.get(i).getDictAtIndex(j,stopwords));
@@ -224,7 +227,7 @@ public class InterfaceGrafica {
 			h.clear();
 			combos.clear();
 			dialog.setVisible(false);
-			JOptionPane.showMessageDialog(null, "N„o existem um dococumento que tenha sua pesquisa ","Recuperar documento", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "N√£o existem um dococumento que tenha sua pesquisa ","Recuperar documento", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		int termosPP = 3;
